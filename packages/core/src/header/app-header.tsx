@@ -7,16 +7,17 @@ import {
   BreadcrumbSeparator,
   Cluster,
   IconButton,
-  SidebarTrigger,
   Text,
+  useSidebar,
 } from 'neobrutalism-ui-react';
-import { Bell, PanelLeft, Search } from 'lucide-react';
+import { Bell, Menu, PanelLeft, PanelLeftClose, Search } from 'lucide-react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { commandItems } from '../navigation/nav.config';
 import { getNavBreadcrumbs, getPageTitle } from '../navigation/route-utils';
 import type { BreadcrumbOptions, CommandItem, ShellChromeLinks } from '../navigation/types';
 import { useCommandPaletteContext } from '../providers/command-palette-provider';
+import { useIsMobile } from '../hooks/use-media-query';
 import { AppCommandPalette } from './app-command-palette';
 import { UserAccountMenu } from './user-account-menu';
 
@@ -77,16 +78,57 @@ function BreadcrumbSegment({
   );
 }
 
+function SidebarNavToggle({
+  mobileOpen,
+  onMobileToggle,
+}: {
+  mobileOpen: boolean;
+  onMobileToggle: () => void;
+}) {
+  const isMobile = useIsMobile();
+  const { state, toggleSidebar, collapsible } = useSidebar();
+
+  if (!isMobile && collapsible === false) return null;
+
+  const isCollapsed = state === 'collapsed';
+  const ariaLabel = isMobile
+    ? mobileOpen
+      ? 'Close navigation menu'
+      : 'Open navigation menu'
+    : isCollapsed
+      ? 'Expand sidebar'
+      : 'Collapse sidebar';
+
+  const Icon = isMobile ? Menu : isCollapsed ? PanelLeft : PanelLeftClose;
+
+  return (
+    <IconButton
+      aria-label={ariaLabel}
+      aria-expanded={isMobile ? mobileOpen : !isCollapsed}
+      tone="secondary"
+      size="sm"
+      className="shrink-0"
+      onClick={isMobile ? onMobileToggle : toggleSidebar}
+    >
+      <Icon className="size-4" aria-hidden />
+    </IconButton>
+  );
+}
+
 export function AppHeader({
   commandPaletteItems = commandItems,
   searchPlaceholder = 'Search pages, dashboards, and actions...',
   chromeLinks,
   breadcrumbOptions,
+  mobileSidebarOpen = false,
+  onMobileSidebarToggle,
 }: {
   commandPaletteItems?: readonly CommandItem[];
   searchPlaceholder?: string;
   chromeLinks?: ShellChromeLinks;
   breadcrumbOptions?: BreadcrumbOptions;
+  mobileSidebarOpen?: boolean;
+  onMobileSidebarToggle?: () => void;
 } = {}) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -113,12 +155,10 @@ export function AppHeader({
     <>
       <header className="sticky top-0 z-20 flex min-h-[4.5rem] shrink-0 items-center gap-2 border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-3 shadow-[0_4px_0_0_var(--nb-shadow)] md:gap-3 md:px-6">
         <div className="flex min-w-0 flex-1 items-center gap-2 md:gap-3">
-          <SidebarTrigger
-            className="size-9 shrink-0 justify-center p-0 lg:hidden"
-            aria-label="Toggle navigation"
-          >
-            <PanelLeft className="size-4" />
-          </SidebarTrigger>
+          <SidebarNavToggle
+            mobileOpen={mobileSidebarOpen}
+            onMobileToggle={onMobileSidebarToggle ?? (() => undefined)}
+          />
 
           <Text
             weight="bold"

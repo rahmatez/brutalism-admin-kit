@@ -1,11 +1,9 @@
 import {
   Avatar,
   Badge,
-  Cluster,
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-  IconButton,
   Input,
   Sidebar,
   SidebarContent,
@@ -26,7 +24,7 @@ import {
   Text,
   useSidebar,
 } from 'neobrutalism-ui-react';
-import { ChevronDown, PanelLeft, PanelLeftClose, Search, Settings, Zap } from 'lucide-react';
+import { ChevronDown, Search, Settings, Zap } from 'lucide-react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getNavIcon } from '../icons/nav-icons';
@@ -60,7 +58,7 @@ function isPathActive(pathname: string, path?: string) {
 }
 
 function SidebarBrand({ brandHref = '/dashboards/analytics' }: { brandHref?: string }) {
-  const { state, toggleSidebar, collapsible } = useSidebar();
+  const { state } = useSidebar();
   const collapsed = state === 'collapsed';
 
   return (
@@ -75,47 +73,24 @@ function SidebarBrand({ brandHref = '/dashboards/analytics' }: { brandHref?: str
               <Zap className="size-5" aria-hidden />
             </div>
           </Link>
-          {collapsible !== false ? (
-            <button
-              type="button"
-              aria-label="Expand sidebar"
-              className="sidebar-toggle-btn hidden lg:inline-flex"
-              onClick={toggleSidebar}
-            >
-              <PanelLeft className="size-4" aria-hidden />
-            </button>
-          ) : null}
         </Stack>
       ) : (
-        <Cluster justify="between" align="center" className="w-full">
-          <Link
-            to={brandHref}
-            className="flex min-w-0 items-center gap-3 rounded-(--nb-radius) transition-colors hover:opacity-90"
-          >
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-(--nb-radius) border-2 border-(--nb-border) bg-(--nb-primary) shadow-[3px_3px_0_0_var(--nb-shadow)]">
-              <Zap className="size-5" aria-hidden />
-            </div>
-            <Stack gap="none" className="min-w-0">
-              <SidebarHeaderLabel className="font-heading text-base leading-tight font-black uppercase">
-                {APP_NAME}
-              </SidebarHeaderLabel>
-              <Text size="xs" className="mt-0.5 block opacity-60">
-                Admin Kit v0.1
-              </Text>
-            </Stack>
-          </Link>
-          {collapsible !== false ? (
-            <IconButton
-              aria-label="Collapse sidebar"
-              tone="secondary"
-              size="sm"
-              className="hidden lg:inline-flex"
-              onClick={toggleSidebar}
-            >
-              <PanelLeftClose className="size-4" />
-            </IconButton>
-          ) : null}
-        </Cluster>
+        <Link
+          to={brandHref}
+          className="flex min-w-0 items-center gap-3 rounded-(--nb-radius) transition-colors hover:opacity-90"
+        >
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-(--nb-radius) border-2 border-(--nb-border) bg-(--nb-primary) shadow-[3px_3px_0_0_var(--nb-shadow)]">
+            <Zap className="size-5" aria-hidden />
+          </div>
+          <Stack gap="none" className="min-w-0">
+            <SidebarHeaderLabel className="font-heading text-base leading-tight font-black uppercase">
+              {APP_NAME}
+            </SidebarHeaderLabel>
+            <Text size="xs" className="mt-0.5 block opacity-60">
+              Admin Kit v0.1
+            </Text>
+          </Stack>
+        </Link>
       )}
     </SidebarHeader>
   );
@@ -343,6 +318,8 @@ export function AdminShell({
             searchPlaceholder={searchPlaceholder}
             chromeLinks={chromeLinks}
             breadcrumbOptions={breadcrumbOptions}
+            mobileSidebarOpen={open}
+            onMobileSidebarToggle={() => setOpen((prev) => !prev)}
           />
         ) : null}
         <Stack gap="lg" className="flex-1 gap-y-8 p-4 md:p-6 lg:p-8">

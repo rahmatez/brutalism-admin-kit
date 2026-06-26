@@ -1,0 +1,1 @@
+export { CollapsibleLayoutPage as default } from './index';

@@ -1,0 +1,1 @@
+export { DocumentationLayoutPage as default } from './index';

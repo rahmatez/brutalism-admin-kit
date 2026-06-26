@@ -1,0 +1,1 @@
+export { FloatingLayoutPage as default } from './index';

@@ -1,0 +1,17 @@
+# Brutalism Admin Kit
+
+Neo-brutalist admin dashboard template built with neobrutalism-ui-react.
+
+Created by [rahmatez](https://github.com/rahmatez).
+
+## Features
+- 10 dashboard variants
+- 40+ application pages
+- 6 sidebar layouts
+- Command palette and responsive design
+
+## Links
+- Demo: http://localhost:5174
+- Docs: /docs/introduction
+- Component Library: https://neo-brutalism-react-docs.vercel.app/
+- Author: https://github.com/rahmatez

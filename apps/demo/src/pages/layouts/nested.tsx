@@ -1,0 +1,1 @@
+export { NestedLayoutPage as default } from './index';

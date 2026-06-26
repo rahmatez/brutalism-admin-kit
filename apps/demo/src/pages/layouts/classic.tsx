@@ -1,0 +1,1 @@
+export { ClassicLayoutPage as default } from './index';

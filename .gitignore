@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Turbo
+.turbo/
+
+# Vite / Vitest cache
+.vite/
+**/.vite/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors / IDE (personal settings)
+.idea/
+*.swp
+*.swo
+*~
+
+# Optional: uncomment to share workspace recommendations
+# .vscode/
+
+# Test artifacts (hasil test — jangan di-push)
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Test source & config (local only — tidak di-publish ke GitHub)
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/e2e/
+**/src/test/
+**/vitest.config.ts
+**/playwright.config.ts
+
+# Misc
+.cache/
+.temp/
+tmp/
+*.pem

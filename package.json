@@ -1,0 +1,22 @@
+{
+  "name": "neo-admin",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:demo": "turbo dev --filter=@neo-admin/demo",
+    "dev:docs": "turbo dev --filter=@neo-admin/docs",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "test:e2e": "turbo test:e2e"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.4",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

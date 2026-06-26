@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "neobrutalism-ui-react/styles.css";
+@source "../node_modules/neobrutalism-ui-react/dist";
+@source "../node_modules/@neo-admin/core/dist";
+@source "../src";
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        color-scheme: light;
+    }
+
+    html.dark {
+        color-scheme: light;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+.sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* NeoBrutalism popover/dropdown — anchor to trigger (Popover API has no default position) */
+@supports (anchor-name: --t) {
+    [data-nb-dropdown-menu],
+    [data-nb-popover] {
+        anchor-scope: --nb-popover-root;
+    }
+
+    [data-nb-dropdown-menu] > button[popovertarget],
+    [data-nb-popover] > button[popovertarget] {
+        anchor-name: --nb-popover-trigger;
+    }
+
+    [data-nb-dropdown-menu] > [popover],
+    [data-nb-popover] > [popover] {
+        position: fixed;
+        inset: auto;
+        top: anchor(bottom);
+        left: anchor(left);
+        margin-block-start: 0.25rem;
+    }
+
+    [data-nb-popover] > [popover][data-side='top'] {
+        top: anchor(top);
+        margin-block-start: 0;
+        translate: 0 calc(-100% - 0.25rem);
+    }
+}
+
+/* DataTable "Rows" select uses h-10 — override library default 3.5rem height/padding */
+:where([data-nb-data-table] select[data-nb-select]) {
+    height: 2.5rem;
+    min-height: 2.5rem;
+    padding-block: 0.375rem;
+    padding-inline: 0.75rem 2.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    background-position: right 0.5rem center;
+    background-size: 1rem 1rem;
+}
+
+/* Command palette — NeoBrutalism docs style */
+.app-command-palette [cmdk-input-wrapper] {
+    position: relative;
+    border-bottom: 2px solid var(--nb-border);
+    background-color: var(--nb-yellow);
+    padding-block: 0.75rem;
+    padding-inline: 1rem;
+}
+
+.app-command-palette [cmdk-input] {
+    height: 2.75rem;
+    padding-right: 3.75rem;
+    font-size: 0.9375rem;
+}
+
+.app-command-palette [cmdk-input-wrapper]::after {
+    content: "ESC";
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    border: 2px solid var(--nb-border);
+    background-color: var(--nb-paper);
+    padding: 0.125rem 0.375rem;
+    font-family: var(--nb-font-mono, monospace);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    color: rgb(75 85 99);
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+}
+
+.app-command-palette [cmdk-list] {
+    max-height: 24rem;
+    background-color: var(--nb-cream);
+    padding: 0.5rem;
+}
+
+.app-command-palette .app-command-palette-item {
+    align-items: flex-start;
+    border: 2px solid transparent;
+    border-radius: var(--nb-radius);
+    padding: 0.75rem 0.875rem;
+    transition: border-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.app-command-palette .app-command-palette-item[data-selected="true"] {
+    background-color: transparent;
+    border-color: var(--nb-border);
+    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+}
+
+/* ── Widget cards — Conversion Funnel baseline (plain CSS, works from core) ── */
+[data-widget-card],
+[data-widget-chart-card] {
+    min-width: 0;
+    gap: 0 !important;
+    padding-block: 0 !important;
+}
+
+[data-nb-split] > [data-widget-chart-card] {
+    align-self: start;
+    width: 100%;
+}
+
+[data-widget-card-header] {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 2px solid var(--nb-border);
+}
+
+[data-widget-card-header-text] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+[data-widget-card-title],
+[data-widget-card-description] {
+    margin: 0;
+}
+
+[data-widget-card-body] {
+    padding: 1rem 1.25rem;
+}
+
+[data-widget-card-chart] {
+    padding: 1rem;
+}
+
+.widget-chart-surface,
+[data-widget-card-chart] [data-slot="chart"] {
+    aspect-ratio: unset !important;
+    width: 100% !important;
+    height: 280px !important;
+    min-height: 0;
+}
+
+.widget-chart-surface .recharts-responsive-container,
+[data-widget-card-chart] .recharts-responsive-container,
+.widget-chart-surface .recharts-wrapper,
+[data-widget-card-chart] .recharts-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+[data-widget-section] {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+[data-widget-section-header] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+[data-widget-section-title],
+[data-widget-section-description] {
+    margin: 0;
+}
+
+/* Collapsed sidebar — consistent icon rail */
+[data-nb-sidebar][data-state=collapsed] [data-nb-sidebar-menu] {
+    gap: 0.375rem;
+}
+
+[data-nb-sidebar][data-state=collapsed] [data-nb-sidebar-menu-button] {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-inline: auto;
+    padding: 0;
+    justify-content: center;
+}
+
+[data-nb-sidebar][data-state=collapsed] [data-nb-sidebar-menu-button]:not([data-active]) {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+[data-nb-sidebar][data-state=collapsed] [data-nb-sidebar-menu-button]:not([data-active]):hover {
+    border-color: var(--nb-border);
+    background: var(--nb-yellow);
+    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+}
+
+[data-nb-sidebar][data-state=collapsed] .sidebar-user-link {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-inline: auto;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+[data-nb-sidebar][data-state=collapsed] .sidebar-user-link:hover {
+    border-color: var(--nb-border);
+    background: var(--nb-yellow);
+    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+}
+
+.sidebar-toggle-btn {
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 2px solid transparent;
+    border-radius: var(--nb-radius);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: border-color 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.sidebar-toggle-btn:hover {
+    border-color: var(--nb-border);
+    background: var(--nb-yellow);
+    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+}
+
+.sidebar-toggle-btn:focus-visible {
+    outline: 2px solid var(--nb-border);
+    outline-offset: 2px;
+}

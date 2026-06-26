@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc></url>
+  <url><loc>/docs/introduction</loc></url>
+  <url><loc>/docs/installation</loc></url>
+  <url><loc>/docs/quick-start</loc></url>
+  <url><loc>/docs/faq</loc></url>
+  <url><loc>/docs/admin-shell</loc></url>
+  <url><loc>/docs/sidebar-variants</loc></url>
+  <url><loc>/docs/header</loc></url>
+  <url><loc>/docs/responsive</loc></url>
+  <url><loc>/docs/dashboards/analytics</loc></url>
+  <url><loc>/docs/dashboards/ecommerce</loc></url>
+  <url><loc>/docs/dashboards/marketing</loc></url>
+  <url><loc>/docs/dashboards/crm</loc></url>
+  <url><loc>/docs/dashboards/stocks</loc></url>
+  <url><loc>/docs/dashboards/saas</loc></url>
+  <url><loc>/docs/dashboards/logistics</loc></url>
+  <url><loc>/docs/dashboards/ai</loc></url>
+  <url><loc>/docs/dashboards/sales</loc></url>
+  <url><loc>/docs/dashboards/finance</loc></url>
+  <url><loc>/docs/templates/auth</loc></url>
+  <url><loc>/docs/templates/crud</loc></url>
+  <url><loc>/docs/templates/list-detail</loc></url>
+  <url><loc>/docs/templates/settings</loc></url>
+  <url><loc>/docs/patterns/command-palette</loc></url>
+  <url><loc>/docs/patterns/data-table</loc></url>
+  <url><loc>/docs/patterns/charts</loc></url>
+  <url><loc>/docs/patterns/forms</loc></url>
+  <url><loc>/docs/patterns/toasts</loc></url>
+  <url><loc>/docs/customization/theming</loc></url>
+  <url><loc>/docs/customization/css-variables</loc></url>
+  <url><loc>/docs/reference/components</loc></url>
+  <url><loc>/docs/reference/changelog</loc></url>
+  <url><loc>/docs/reference/roadmap</loc></url>
+</urlset>

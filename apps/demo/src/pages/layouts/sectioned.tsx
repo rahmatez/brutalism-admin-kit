@@ -1,0 +1,1 @@
+export { SectionedLayoutPage as default } from './index';

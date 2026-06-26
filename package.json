@@ -1,6 +1,14 @@
 {
   "name": "neo-admin",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rahmatez/brutalism-admin-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rahmatez/brutalism-admin-kit/issues"
+  },
+  "homepage": "https://github.com/rahmatez/brutalism-admin-kit#readme",
   "scripts": {
     "dev": "turbo dev",
     "dev:demo": "turbo dev --filter=@neo-admin/demo",

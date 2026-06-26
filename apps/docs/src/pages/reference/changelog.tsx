@@ -1,3 +1,4 @@
+import { APP_GITHUB_URL } from '@neo-admin/core';
 import { DocsPage } from '@/components/docs-layout';
 import { DocsLink, DocsSection } from '@/components/docs-content';
 import { Badge, Cluster, Stack, Text } from 'neobrutalism-ui-react';
@@ -44,7 +45,7 @@ export default function ChangelogPage() {
       <Text className="mt-6 opacity-70">
         Follow development on{' '}
         <a
-          href="https://github.com/rahmatez/neo-admin"
+          href={APP_GITHUB_URL}
           target="_blank"
           rel="noreferrer"
           className="font-bold underline decoration-2 underline-offset-2"

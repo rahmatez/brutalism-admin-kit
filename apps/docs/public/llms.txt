@@ -11,6 +11,7 @@ Created by [rahmatez](https://github.com/rahmatez).
 - Command palette and responsive design
 
 ## Links
+- Repository: https://github.com/rahmatez/brutalism-admin-kit
 - Demo: http://localhost:5174
 - Docs: /docs/introduction
 - Component Library: https://neo-brutalism-react-docs.vercel.app/

@@ -1,27 +1,51 @@
 # Brutalism Admin Kit
 
-Neo-brutalist admin dashboard template built with [neobrutalism-ui-react](https://www.npmjs.com/package/neobrutalism-ui-react). Inspired by [TailAdmin](https://tailadmin.com/) — 10 dashboards, 40+ pages, 6 sidebar layouts, and full documentation.
+Neo-brutalist admin dashboard template for React — 10 dashboards, 40+ pages, 6 sidebar layouts, and a full documentation site.
 
-**Created by [rahmatez](https://github.com/rahmatez)**
+Built with [neobrutalism-ui-react](https://www.npmjs.com/package/neobrutalism-ui-react). Inspired by [TailAdmin](https://tailadmin.com/).
+
+**Repository:** [github.com/rahmatez/brutalism-admin-kit](https://github.com/rahmatez/brutalism-admin-kit)  
+**Created by [rahmatez](https://github.com/rahmatez)** · [rahmatez.dev](https://www.rahmatez.dev/)
+
+---
 
 ## Features
 
-- **10 Dashboard Variants** — Analytics, E-Commerce, Marketing, CRM, Stocks, SaaS, Logistics, AI, Sales, Finance
-- **40+ Pages** — Auth, profile, mail, chat, invoice, task, calendar, files, tables, charts, UI showcase, errors
-- **6 Sidebar Layouts** — Classic, sectioned, collapsible, nested, floating, documentation
-- **UX** — Dark mode, command palette (⌘K), toast feedback, skeleton loading, responsive design
-- **Monorepo** — Shared `@neo-admin/core` package, demo app, and docs site
+| Area | What's included |
+|------|-----------------|
+| **Dashboards** | Analytics, E-Commerce, Marketing, CRM, Stocks, SaaS, Logistics, AI, Sales, Finance |
+| **Pages** | Auth, profile, mail, chat, invoice, tasks, calendar, files, tables, charts, UI showcase, errors |
+| **Layouts** | Classic, sectioned, collapsible, nested, floating, documentation sidebar |
+| **UX** | Dark mode, command palette (⌘K), toasts, skeleton loading, responsive shell |
+| **Monorepo** | Shared `@neo-admin/core`, live demo app, and docs site |
+
+### `@neo-admin/core` exports
+
+- **Shell** — `AdminShell`, `AuthLayout`, `BlankLayout`, `AppProviders`
+- **Navigation** — sidebar config, breadcrumbs, command palette items
+- **Widgets** — KPI rows, chart cards, data tables, dashboard toolbar
+- **Data** — typed mock data for dashboards and app pages
+
+---
+
+## Tech stack
+
+React 19 · Vite 7 · Tailwind CSS v4 · React Router 7 · Recharts · TypeScript · Turborepo · pnpm
+
+---
 
 ## Requirements
 
-- Node.js 20.19+
-- pnpm 9+
+- **Node.js** 20.19+
+- **pnpm** 9+
 
-## Quick Start
+---
+
+## Quick start
 
 ```bash
-git clone https://github.com/rahmatez/neo-admin.git
-cd neo-admin
+git clone https://github.com/rahmatez/brutalism-admin-kit.git
+cd brutalism-admin-kit
 pnpm install
 pnpm dev
 ```
@@ -32,57 +56,65 @@ pnpm dev
 | Docs | `pnpm dev:docs` | http://localhost:5175 |
 | Both | `pnpm dev` | — |
 
-## Testing (local only)
+---
 
-Test files are **not included** in this repository (see `.gitignore`). Run tests locally after developing:
-
-```bash
-pnpm test
-pnpm exec playwright install chromium
-pnpm test:e2e
-```
-
-## Project Structure
+## Project structure
 
 ```
-neo-admin/
+brutalism-admin-kit/
 ├── apps/
-│   ├── demo/          # Live admin preview (SPA)
-│   └── docs/          # Documentation site
+│   ├── demo/              # Live admin preview (SPA)
+│   └── docs/              # Documentation site
 ├── packages/
-│   ├── core/          # AdminShell, widgets, nav, mock data
-│   └── config/        # Shared TypeScript config
+│   ├── core/              # AdminShell, widgets, navigation, mock data
+│   └── config/            # Shared TypeScript config
+├── package.json
+├── pnpm-workspace.yaml
+└── turbo.json
 ```
 
-## Using in Your Project
+---
+
+## Use in your project
+
+Clone the monorepo and copy `packages/core`, or install dependencies and wire up the shell:
 
 ```bash
-pnpm add neobrutalism-ui-react @neo-admin/core
+pnpm add neobrutalism-ui-react lucide-react react-router-dom react-hook-form recharts cmdk
 ```
 
 ```css
 /* styles.css */
 @import "tailwindcss";
 @import "neobrutalism-ui-react/styles.css";
+
 @source "../node_modules/neobrutalism-ui-react/dist";
+@source "../node_modules/@neo-admin/core/dist";
 ```
 
 ```tsx
-import { AppProviders, AdminShell } from '@neo-admin/core';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { AppProviders, AdminShell, initPopoverAnchoring } from '@neo-admin/core';
 import { BrowserRouter } from 'react-router-dom';
+import './styles.css';
 
-export function App() {
-  return (
+initPopoverAnchoring();
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <AppProviders>
       <BrowserRouter>
-        <AdminShell>
-          {/* Your pages */}
-        </AdminShell>
+        <AdminShell>{/* Your routes */}</AdminShell>
       </BrowserRouter>
     </AppProviders>
-  );
-}
+  </StrictMode>,
+);
 ```
+
+See the docs app for a full walkthrough — run `pnpm dev:docs` and open `/docs/installation`.
+
+---
 
 ## Scripts
 
@@ -93,33 +125,51 @@ export function App() {
 | `pnpm dev:docs` | Docs site only |
 | `pnpm build` | Build all packages and apps |
 | `pnpm lint` | Type-check all packages |
-| `pnpm test` | Run tests |
+| `pnpm test` | Run unit/integration tests (local) |
+| `pnpm test:e2e` | Run Playwright e2e tests (local) |
+
+> Test source files are excluded from this repository (see `.gitignore`). Tests are intended for local development only.
+
+---
 
 ## Deployment (Vercel)
 
-Deploy each app as a separate Vercel project:
+Deploy **demo** and **docs** as separate Vercel projects. Each app includes a `vercel.json` with recommended settings.
 
-### Demo App
-- **Root Directory:** `apps/demo`
-- **Build Command:** `cd ../.. && pnpm build --filter=@neo-admin/demo`
-- **Output Directory:** `dist`
-- **Install Command:** `cd ../.. && pnpm install`
+### Demo app (`apps/demo`)
 
-### Docs Site
-- **Root Directory:** `apps/docs`
-- **Build Command:** `cd ../.. && pnpm build --filter=@neo-admin/docs`
-- **Output Directory:** `dist`
-- **Install Command:** `cd ../.. && pnpm install`
+| Setting | Value |
+|---------|-------|
+| Root Directory | `apps/demo` |
+| Install Command | `cd ../.. && pnpm install` |
+| Build Command | `cd ../.. && pnpm build --filter=@neo-admin/demo` |
+| Output Directory | `dist` |
 
-Each app includes a `vercel.json` with these settings pre-configured.
+### Docs site (`apps/docs`)
 
-## Component Library
+| Setting | Value |
+|---------|-------|
+| Root Directory | `apps/docs` |
+| Install Command | `cd ../.. && pnpm install` |
+| Build Command | `cd ../.. && pnpm build --filter=@neo-admin/docs` |
+| Output Directory | `dist` |
 
-Brutalism Admin Kit is built on [neobrutalism-ui-react](https://neo-brutalism-react-docs.vercel.app/). For primitive component API reference, see the [library documentation](https://neo-brutalism-react-docs.vercel.app/).
+---
 
-## Author
+## Component library
 
-Built by [rahmatez](https://github.com/rahmatez) · [rahmatez.dev](https://www.rahmatez.dev/)
+UI primitives come from [neobrutalism-ui-react](https://neo-brutalism-react-docs.vercel.app/). Brutalism Admin Kit adds the admin shell, page patterns, widgets, and navigation on top.
+
+- [NeoBrutalism UI docs](https://neo-brutalism-react-docs.vercel.app/)
+- [npm package](https://www.npmjs.com/package/neobrutalism-ui-react)
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome on [GitHub](https://github.com/rahmatez/brutalism-admin-kit/issues).
+
+---
 
 ## License
 

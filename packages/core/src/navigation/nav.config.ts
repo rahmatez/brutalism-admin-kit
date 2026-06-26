@@ -2,7 +2,7 @@ import type { CommandItem, NavGroup, RouteMeta } from './types';
 
 export const APP_NAME = 'Brutalism Admin Kit';
 export const APP_AUTHOR = 'rahmatez';
-export const APP_GITHUB_URL = 'https://github.com/rahmatez';
+export const APP_GITHUB_URL = 'https://github.com/rahmatez/brutalism-admin-kit';
 
 export const dashboardNav: readonly NavGroup[] = [
   {

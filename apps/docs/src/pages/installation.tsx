@@ -81,8 +81,8 @@ export default function InstallationPage() {
             {
               title: 'Clone and install',
               description: 'Install all workspace packages from the repository root.',
-              code: `git clone https://github.com/rahmatez/neo-admin.git
-cd neo-admin
+              code: `git clone https://github.com/rahmatez/brutalism-admin-kit.git
+cd brutalism-admin-kit
 pnpm install`,
             },
             {

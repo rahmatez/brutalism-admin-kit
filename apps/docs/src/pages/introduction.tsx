@@ -49,7 +49,7 @@ export default function IntroductionPage() {
       description="Brutalism Admin Kit — a production-ready neo-brutalist admin dashboard template built on neobrutalism-ui-react."
     >
       <Text>
-        Brutalism Admin Kit is an open-source admin template inspired by TailAdmin. Instead of generic shadcn-style
+        Brutalism Admin Kit is an open-source admin template. Instead of generic shadcn-style
         components, every screen uses the bold borders, hard shadows, and saturated palette from{' '}
         <a
           href="https://www.npmjs.com/package/neobrutalism-ui-react"

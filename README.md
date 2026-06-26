@@ -2,7 +2,7 @@
 
 Neo-brutalist admin dashboard template for React — 10 dashboards, 40+ pages, 6 sidebar layouts, and a full documentation site.
 
-Built with [neobrutalism-ui-react](https://www.npmjs.com/package/neobrutalism-ui-react). Inspired by [TailAdmin](https://tailadmin.com/).
+Built with [neobrutalism-ui-react](https://www.npmjs.com/package/neobrutalism-ui-react).
 
 **Repository:** [github.com/rahmatez/brutalism-admin-kit](https://github.com/rahmatez/brutalism-admin-kit)  
 **Created by [rahmatez](https://github.com/rahmatez)** · [rahmatez.dev](https://www.rahmatez.dev/)
